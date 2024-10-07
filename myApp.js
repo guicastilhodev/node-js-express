@@ -2,7 +2,6 @@ require('dotenv').config();
 let express = require('express');
 let app = express();
 const path = require('path');
-const messageStyle = process.env.MESSAGE_STYLE;
 
 let absolutePath = __dirname + '/views/index.html';
 let publicAbsolutePath = path.join(__dirname, '/public');
@@ -14,8 +13,10 @@ app.get("/", function (req, res) {
 }); 
 
 app.get ("/json", function (req, res) {
+
+    const messageStyle = process.env.MESSAGE_STYLE;
     
-    if(messageStyle == "uppercase") {
+    if(messageStyle === "uppercase") {
         res.json({message: "HELLO JSON"});
     } else {
         res.json({message: "Hello json"});
